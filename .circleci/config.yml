@@ -64,7 +64,7 @@ workflows:
           context: <publishing-context>
           requires:
             - orb-tools/publish-dev
-      - connect_to_sofy:
+      - sofy/connect_to_sofy:
           user: MY_SOFY_USER
           API_key: MY_API_KEY
           apk_path: MY_APK_PATH
