@@ -32,7 +32,7 @@ jobs:
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
-      - sofy/greet
+      - sofy-test/greet
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
@@ -50,8 +50,8 @@ workflows:
           path: ./src/tests
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
-          orb-name: sofy-dot-ai/sofy
-          context: orb-publishing # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
+          orb-name: sofy-dot-ai/soft-test-orb
+          context: <publishing-context> # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
           requires:
             - orb-tools/lint
             - orb-tools/pack
@@ -61,9 +61,12 @@ workflows:
       # dev:${CIRCLE_SHA1:0:7} version of your orb
       - orb-tools/trigger-integration-tests-workflow:
           name: trigger-integration-dev
-          context: orb-publishing
+          context: <publishing-context>
           requires:
             - orb-tools/publish-dev
+      - sofy-test/authorization:
+          user: MY_SOFY_USER
+          password: MY_SOFY_PASSWORD
 
   # This `integration-test_deploy` workflow will only run
   # when the run-integration-tests pipeline parameter is set to true.
@@ -81,8 +84,8 @@ workflows:
       # be skipped.
       # e.g. [semver:patch] will cause a patch version to be published.
       - orb-tools/dev-promote-prod-from-commit-subject:
-          orb-name: sofy-dot-ai/sofy
-          context: orb-publishing
+          orb-name: circleci/sofy-test
+          context: <publishing-context>
           add-pr-comment: false
           fail-if-semver-not-indicated: true
           publish-version-tag: false
