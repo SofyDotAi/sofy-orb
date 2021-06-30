@@ -65,11 +65,9 @@ workflows:
           requires:
             - orb-tools/publish-dev
       - connect_to_sofy:
-          steps:
-            - sofy/connect_API:
-              user: MY_SOFY_USER
-              API_key: MY_API_KEY
-              apk_path: MY_APK_PATH
+          user: MY_SOFY_USER
+          API_key: MY_API_KEY
+          apk_path: MY_APK_PATH
 
   # This `integration-test_deploy` workflow will only run
   # when the run-integration-tests pipeline parameter is set to true.
