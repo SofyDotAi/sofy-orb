@@ -16,7 +16,7 @@ parameters:
     type: string
     description: path to apk in your repository
     default: "app/build/outputs/apk/debug/app-debug.apk"
-    
+
 steps:
   - connect_to_API:
       user: << parameters.user >>
