@@ -18,7 +18,7 @@ parameters:
     default: "app/build/outputs/apk/debug/app-debug.apk"
 
 steps:
-  - connect_to_API:
+  - connect_to_api:
       user: << parameters.user >>
       API_key: <<parameters.API_key>>
       apk_path: <<parameters.apk_path>>
