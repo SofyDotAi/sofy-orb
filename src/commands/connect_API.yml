@@ -11,10 +11,6 @@ parameters:
     type: string
     description: path to apk in your repository
     default: "app/build/outputs/apk/debug/app-debug.apk"
-  add_info:
-    type: string
-    description: any additional information
-    default: ""
 steps:
   - run:
      command: |
@@ -22,5 +18,4 @@ steps:
               -F "user=${<<parameters.user>>}" \
               -F "apk=@<<parameters.apk_path>>" \
               -F "API_key=<<parameters.API_key>>" \
-              -F "add_info=<<parameters.add_info>>" \
               SOFY_API_URL
