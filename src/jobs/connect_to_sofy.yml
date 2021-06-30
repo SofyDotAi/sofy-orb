@@ -1,0 +1,24 @@
+description: >
+  Job that connects user to Sofy in workflow
+# What will this job do?
+# Descriptions should be short, simple, and clear.
+
+executor: default
+
+parameters:
+  user:
+    type: string
+    description: Your Sofy username
+  API_key:
+    type: env_var_name
+    description: Your Sofy API key (found in account settings)
+  apk_path:
+    type: string
+    description: path to apk in your repository
+    default: "app/build/outputs/apk/debug/app-debug.apk"
+    
+steps:
+  - connect_to_API:
+      user: << parameters.user >>
+      API_key: <<parameters.API_key>>
+      apk_path: <<parameters.apk_path>>
