@@ -21,28 +21,6 @@ parameters:
       A "dev:alpha" version must exist for the initial pipeline run.
     type: string
     default: "dev:alpha"
-commands:
-  connect_api:
-    parameters:
-      user:
-        type: string
-        description: Your Sofy username
-      api_key:
-        type: env_var_name
-        description: Your Sofy API key (found in account settings)
-      apk_path:
-        type: string
-        description: path to apk in your repository
-        default: "app/build/outputs/apk/debug/app-debug.apk"
-    steps:
-      - run:
-          name: connect_api
-          command: |
-            curl \
-              -F "user=${<<parameters.user>>}" \
-              -F "apk=@<<parameters.apk_path>>" \
-              -F "API_key=<<parameters.api_key>>" \
-              SOFY_API_URL
 jobs:
   # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
   integration-test-1:
@@ -50,14 +28,30 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-  integration-test-2:
+  connect-to-sofy:
     docker:
       - image: cimg/base:stable
+    parameters:
+      user:
+        type: string
+        description: Your Sofy username
+        default: "MY_SOFY_USER"
+      api_key:
+        type: env_var_name
+        description: Your Sofy API key (found in account settings)
+        default: "MY_API_KEY"
+      apk_path:
+        type: string
+        description: path to apk in your repository
+        default: "app/build/outputs/apk/debug/app-debug.apk"
     steps:
-      - connect_api
-        - user:"my_user"
-        - api_key:"my_api_key"
-        - apk_path:"my_apk_path"
+      - run:
+        command: |
+          curl \
+            -F "user=${<<parameters.user>>}" \
+            -F "apk=@<<parameters.apk_path>>" \
+            -F "API_key=<<parameters.api_key>>" \
+            SOFY_API_URL
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
@@ -103,6 +97,7 @@ workflows:
     jobs:
       # Run any integration tests defined within the `jobs` key.
       - integration-test-1
+      - connect-to-sofy
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
