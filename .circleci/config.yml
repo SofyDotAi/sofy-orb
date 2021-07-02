@@ -11,7 +11,7 @@ orbs:
 ## These parameters are used internally by orb-tools. Skip to the Jobs section.
 parameters:
   run-integration-tests:
-    description: An internal flag to prevent integration test from running before a development version has been created.
+    description: An internal flag to prevent integration test from running before a development version has been created
     type: boolean
     default: false
   dev-orb-version:
