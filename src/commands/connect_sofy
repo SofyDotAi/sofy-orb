@@ -5,7 +5,7 @@ parameters:
     type: string
     description: Your Sofy username
     default: ""
-  API_key:
+  api_key:
     type: env_var_name
     description: Your Sofy API key (found in account settings)
     default: ""
