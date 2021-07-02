@@ -31,28 +31,12 @@ jobs:
   integration-test-2:
     docker:
       - image: cimg/base:stable
-    parameters:
-      user:
-        type: string
-        description: Your Sofy username
-        default: "MY_SOFY_USER"
-      api_key:
-        type: env_var_name
-        description: Your Sofy API key (found in account settings)
-        default: "MY_API_KEY"
-      apk_path:
-        type: string
-        description: path to apk in your repository
-        default: "app/build/outputs/apk/debug/app-debug.apk"
     steps:
       - checkout:
-      - run:
-        command: |
-          curl \
-            -F "user=${<<parameters.user>>}" \
-            -F "apk=@<<parameters.apk_path>>" \
-            -F "API_key=<<parameters.api_key>>" \
-            SOFY_API_URL
+      - sofy/connect_sofy:
+        user: "MY_SOFY_USER"
+        API_key: "key"
+        apk_path: "MY_APK_PATH"
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
