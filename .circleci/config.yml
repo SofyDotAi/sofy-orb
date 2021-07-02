@@ -1,10 +1,10 @@
 version: 2.1
-
 orbs:
   # Replace this with your own!
   sofy: sofy-dot-ai/sofy@<<pipeline.parameters.dev-orb-version>>
   orb-tools: circleci/orb-tools@10.0
-
+  bats: circleci/bats@1.0
+  shellcheck: circleci/shellcheck@2.0
 # Pipeline Parameters
 ## These parameters are used internally by orb-tools. Skip to the Jobs section.
 parameters:
@@ -46,8 +46,12 @@ workflows:
     jobs:
       - orb-tools/lint # Lint Yaml files
       - orb-tools/pack # Pack orb source
+      - shellcheck/check:
+          dir: ./src/scripts
+          exclude: SC2148
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
+          orb-name: sofy-dot-ai/sofy-orb
           orb-name: sofy-dot-ai/sofy
           context: orb-publishing-context # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
           requires:
@@ -62,8 +66,6 @@ workflows:
           context: <publishing-context>
           requires:
             - orb-tools/publish-dev
-
-
   # This `integration-test_deploy` workflow will only run
   # when the run-integration-tests pipeline parameter is set to true.
   # It is meant to be triggered by the "trigger-integration-tests-workflow"
