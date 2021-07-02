@@ -56,7 +56,7 @@ workflows:
           path: ./src/tests
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
-          orb-name: sofy-dot-ai/sofy-orb
+          orb-name: sofy-dot-ai/sofy
           context: orb-publishing-context # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
           requires:
             - orb-tools/lint
