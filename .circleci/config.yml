@@ -86,7 +86,7 @@ workflows:
       # as that will determine whether a patch, minor or major
       # version will be published or if publishing should
       # be skipped.
-      # e.g. [semver:patch] will cause a patch version to be published.
+      # e.g. [semver:patch] will cause a patch version to be published
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: circleci/sofy
           context: orb-publishing-context
