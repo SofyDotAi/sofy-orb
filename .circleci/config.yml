@@ -34,9 +34,9 @@ jobs:
     steps:
       - checkout:
       - sofy/connect_sofy:
-        user: "MY_SOFY_USER"
-        API_key: "key"
-        apk_path: "MY_APK_PATH"
+        user:"MY_SOFY_USER"
+        API_key:"key"
+        apk_path:"MY_APK_PATH"
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
