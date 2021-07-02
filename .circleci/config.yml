@@ -32,7 +32,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout:
+      - checkout
       - sofy/connect_sofy:
           user:"MY_SOFY_USER"
           api_key:"key"
