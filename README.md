@@ -37,5 +37,5 @@ Example: `[semver:major]`
 * On merge, after manual approval, the orb will automatically be published to the Orb Registry.
 
 
-For further questions/comments about this or other orbs, visit the Orb Category of [CircleCI Discuss](https://discuss.circleci.com/c/orbs).
+For further questions/comments about this or other orbs, visit the Orb Category of [CircleCI Discuss](https://discuss.circleci.com/c/orbs) .
 
