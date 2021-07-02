@@ -57,7 +57,7 @@ workflows:
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: sofy-dot-ai/sofy-orb
-          context: orb-publisher # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
+          context: orb-publishing-context # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
           requires:
             - orb-tools/lint
             - orb-tools/pack
@@ -89,7 +89,7 @@ workflows:
       # e.g. [semver:patch] will cause a patch version to be published.
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: circleci/sofy
-          context: orb-publisher
+          context: orb-publishing-context
           add-pr-comment: false
           fail-if-semver-not-indicated: true
           publish-version-tag: true
