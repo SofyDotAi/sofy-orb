@@ -57,7 +57,7 @@ workflows:
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: sofy-dot-ai/sofy-orb
-          context: <publishing-context> # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
+          context: orb-publisher # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
           requires:
             - orb-tools/lint
             - orb-tools/pack
