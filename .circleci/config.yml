@@ -28,7 +28,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-  connect-to-sofy:
+  integration-test-2:
     docker:
       - image: cimg/base:stable
     parameters:
@@ -45,6 +45,7 @@ jobs:
         description: path to apk in your repository
         default: "app/build/outputs/apk/debug/app-debug.apk"
     steps:
+      - checkout:
       - run:
         command: |
           curl \
@@ -96,7 +97,6 @@ workflows:
     jobs:
       # Run any integration tests defined within the `jobs` key.
       - integration-test-1
-      - connect-to-sofy
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
