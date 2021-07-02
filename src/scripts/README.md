@@ -6,7 +6,7 @@ As a part of keeping things seperate, it is encouraged to use environment variab
 
 # Including Scripts
 
-Utilizing the `circleci orb pack` CLI command, it is possible to import files (such as _shell scripts_), using the `<<include(scripts/script_name.sh)>>` syntax in place of any config key's value.
+Utilizing the `circleci orb pack` CLI command, it is possible to import files (such as _shell scripts_), using the `<<include(scripts/script_name.sh)>>` syntax in place of any config key's value
 
 ```yaml
 # commands/greet.yml
