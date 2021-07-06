@@ -5,12 +5,14 @@ parameters:
   user:
     type: string
     description: Your Sofy username
+    default: ""
   api_key:
     type: env_var_name
-    description: Your Sofy API key (found in account settings)
+    description: Your Sofy API key (found in sofy account settings)
   apk_path:
     type: string
     description: path to apk in your repository
+    default: "app/build/outputs/apk/debug/app-debug.apk"
 steps:
   - run:
       command: |
