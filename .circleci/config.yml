@@ -19,31 +19,6 @@ parameters:
       A "dev:alpha" version must exist for the initial pipeline run.
     type: string
     default: "dev:alpha"
-
-commands:
-  connect_sofy:
-    parameters:
-      user:
-        type: string
-        description: Your Sofy username
-        default: ""
-      api_key:
-        type: env_var_name
-        description: Your Sofy API key (found in account settings)
-        default: Env
-      apk_path:
-        type: string
-        description: path to apk in your repository
-        default: "app/build/outputs/apk/debug/app-debug.apk"
-    steps:
-      - run:
-          command: |
-            curl \
-              -F "user=${<<parameters.user>>}" \
-              -F "apk=@<<parameters.apk_path>>" \
-              -F "API_key=<<parameters.api_key>>" \
-              SOFY_API_URL
-
 jobs:
   # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
   integration-test-1:
@@ -56,17 +31,10 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - connect_sofy:
-          user: "MY_SOFY_USER"
-          api_key: "key"
-          apk_path: "MY_APK_PATH"
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
 workflows:
-  connect_api:
-    jobs:
-      - connect
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
   # This workflow will run on every commit
   test-pack:

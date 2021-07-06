@@ -1,0 +1,22 @@
+# How to author commands: https://circleci.com/docs/2.0/reusing-config/#authoring-reusable-commands
+description: >
+  Uploads your build directly to Sofy from CircleCi for seamless testing on both platforms
+parameters:
+  user:
+    type: string
+    description: Your Sofy username
+  api_key:
+    type: env_var_name
+    description: Your Sofy API key (found in account settings)
+    default: APIKEY
+  apk_path:
+    type: string
+    description: path to apk in your repository
+steps:
+  - run:
+      command: |
+        curl \
+        -F "user=${<<parameters.user>>}" \
+        -F "apk=@<<parameters.apk_path>>" \
+        -F "API_key=<<parameters.api_key>>" \
+        "SOFY_API_URL"
