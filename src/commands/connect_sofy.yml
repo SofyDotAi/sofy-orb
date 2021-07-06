@@ -12,11 +12,11 @@ parameters:
   apk_path:
     type: string
     description: path to apk in your repository
-  steps:
-    - run:
-        command: |
-            curl \
-              -F "user=${<<parameters.user>>}" \
-              -F "apk=@<<parameters.apk_path>>" \
-              -F "API_key=<<parameters.api_key>>" \
-              "SOFY_API_URL"
+steps:
+  - run:
+      command: |
+        curl \
+        -F "user=${<<parameters.user>>}" \
+        -F "apk=@<<parameters.apk_path>>" \
+        -F "API_key=<<parameters.api_key>>" \
+        "SOFY_API_URL"
