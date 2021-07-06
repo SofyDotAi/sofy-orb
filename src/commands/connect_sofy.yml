@@ -8,7 +8,7 @@ parameters:
     default: ""
   api_key:
     type: env_var_name
-    description: Your Sofy API key (found in account settings)
+    description: Your Sofy API key (found in sofy account settings)
   apk_path:
     type: string
     description: path to apk in your repository
