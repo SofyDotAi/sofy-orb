@@ -1,12 +1,12 @@
-description: >
-  Sample description
 # What will this job do?
-# Descriptions should be short, simple, and clear.
+  # Descriptions should be short, simple, and clear.
+  Sample description
+executor: default
 parameters:
-  to:
+  greeting:
     type: string
-    default: "World"
-    description: "Hello to whom?"
+    default: "Hello"
+    description: "Select a proper greeting"
 steps:
   - greet:
-      to: << parameters.to >>
+      greeting: << parameters.greeting >>
