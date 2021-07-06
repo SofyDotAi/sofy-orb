@@ -19,15 +19,10 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-  connect:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
   # This workflow will run on every commit
-  test-pack:
+  lint_pack_test:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
       - orb-tools/lint # Lint Yaml files
