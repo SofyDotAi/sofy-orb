@@ -12,6 +12,6 @@ parameters:
 steps:
   - run:
       command: |
-        curl --location --request POST 'https://api-sofy-test.azurewebsites.net/api/AppTests/buildUpload' \
+        --location --request POST 'https://api-sofy-test.azurewebsites.net/api/AppTests/buildUpload' \
         --header 'SubscriptionKey: ${parameters.api_key}' \
         --form 'applicationFile=@${parameters.apk_path}'
