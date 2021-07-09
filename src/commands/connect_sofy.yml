@@ -2,10 +2,6 @@
 description: >
   Uploads your build directly to Sofy from CircleCi for seamless testing on both platforms
 parameters:
-  user:
-    type: string
-    description: Your Sofy username
-    default: ""
   api_key:
     type: env_var_name
     description: Your Sofy API key (found in sofy account settings)
@@ -16,8 +12,6 @@ parameters:
 steps:
   - run:
       command: |
-        curl \
-        -F "user=${<<parameters.user>>}" \
-        -F "apk=@<<parameters.apk_path>>" \
-        -F "API_key=<<parameters.api_key>>" \
-        "SOFY_API_URL"
+        curl --location --request POST 'https://api-sofy-test.azurewebsites.net/api/AppTests/buildUpload' \
+        --header 'SubscriptionKey: ${parameters.api_key}' \
+        --form 'applicationFile=@${parameters.apk_path}'
