@@ -16,3 +16,4 @@ steps:
         SUBS_KEY: <parameters.subscription_key>
         APK_PATH: <parameters.apk_path>
       command: <<include(scripts/connect_script.sh)>>
+      
