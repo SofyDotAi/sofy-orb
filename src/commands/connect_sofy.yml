@@ -3,7 +3,7 @@ description: >
   Uploads your build directly to Sofy from CircleCi for seamless testing on both platforms
 parameters:
   subscription_key:
-    type: env_var_name
+    type: string
     description: Your Sofy API key (found in sofy account settings)
   apk_path:
     type: string
