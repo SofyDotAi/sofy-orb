@@ -14,5 +14,5 @@ steps:
       name: Send Build to API
       command: |
         curl --location --request POST 'https://api-sofy-test.azurewebsites.net/api/AppTests/buildUpload' \
-        --header 'SubscriptionKey: ${parameters.subscription_key}' \
-        --form 'applicationFile=@${parameters.apk_path}'
+        --header 'SubscriptionKey: {parameters.subscription_key}' \
+        --form 'applicationFile=@{parameters.apk_path}'
