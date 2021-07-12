@@ -12,7 +12,8 @@ parameters:
 steps:
   - run:
       name: Send Build to API
-      command: |
-        curl --location --request POST 'https://api-sofy-test.azurewebsites.net/api/AppTests/buildUpload' \
-        --header 'SubscriptionKey: {parameters.subscription_key}' \
-        --form 'applicationFile=@{parameters.apk_path}'
+      environment:
+        SUBS_KEY: <parameters.subscription_key>
+        APK_PATH: <parameters.apk_path>
+      command: <<include(scripts/connect_script.sh)>>
+
