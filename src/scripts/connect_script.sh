@@ -6,4 +6,4 @@ connect() {
   --form "applicationFile=@"${APK_PATH}"")
   echo ${x}
 }
-connect()
+connect
