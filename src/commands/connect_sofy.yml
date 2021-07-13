@@ -1,4 +1,4 @@
-#How to author commands: https://circleci.com/docs/2.0/reusing-config/#authoring-reusable-commands
+#How to author commands: https://circleci.com/docs/2.0/reusing-config/#authoring-reusable-commands.
 description: >
   Uploads your build directly to Sofy from CircleCi for seamless testing on both platforms
 parameters:
