@@ -7,4 +7,3 @@ connect() {
   echo ${x}
 }
 connect()
-
