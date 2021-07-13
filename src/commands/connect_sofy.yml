@@ -13,7 +13,7 @@ steps:
   - run:
       name: Send Build to API
       environment:
-        SUBS_KEY: <parameters.subscription_key>
-        APK_PATH: <parameters.apk_path>
+        SUBS_KEY: <<parameters.subscription_key>>
+        APK_PATH: <<parameters.apk_path>>
       command: <<include(scripts/connect_script.sh)>>
 
